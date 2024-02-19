@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ShootMechanic : MonoBehaviour
 {
-    public ParticleSystem muzzleFlashEffect;
+    public GameObject gun;
+    
+    private ParticleSystem muzzleFlashEffect;
+    private AudioSource gunAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        muzzleFlashEffect = gun.transform.Find("MuzzleFlashEffect").GetComponent<ParticleSystem>();
+        gunAudio = gun.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -18,6 +22,7 @@ public class ShootMechanic : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             muzzleFlashEffect.Play();
+            gunAudio.Play();
 
             RaycastHit gunshot;
             if (Physics.Raycast(transform.position, transform.forward, out gunshot, Mathf.Infinity))
@@ -25,14 +30,18 @@ public class ShootMechanic : MonoBehaviour
                 if (gunshot.collider.CompareTag("Enemy"))
                 {
                     Rigidbody enemyRB = gunshot.collider.gameObject.GetComponent<Rigidbody>();
+                    PrototypeEnemyBehaviour enemyEB = gunshot.collider.gameObject.GetComponent<PrototypeEnemyBehaviour>();
                     if (enemyRB != null)
                     {
-                        if (enemyRB.constraints != RigidbodyConstraints.None)
+                        if (enemyEB != null && enemyEB.alive)
                         {
-                            enemyRB.constraints = RigidbodyConstraints.None;
-                            enemyRB.AddTorque(45, 0, 0, ForceMode.Impulse);
+                            enemyEB.Die();
                         }
                     }
+                }
+                else if (gunshot.collider.CompareTag("Civilian"))
+                {
+                    FindObjectOfType<PrototypeGameManager>().GameOverMessage("You shot a civilian! Game over.");
                 }
             }
         }

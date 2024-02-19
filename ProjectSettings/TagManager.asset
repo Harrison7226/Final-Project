@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WarpPoint
   - Enemy
+  - Civilian
   layers:
   - Default
   - TransparentFX
