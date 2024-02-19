@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WarpPlayer : MonoBehaviour
 {
     public Camera mainCamera;
     public float warpSpeed = 2;
+    public Image reticle;
+    public Image screenTint;
+    public Color targetColor;
+   // public float lerpSpeed = 1;
+
     private bool isWarping = false;
     private Vector3 destinationPosition;
     private GameObject visibleWarpPoint;
@@ -19,14 +25,21 @@ public class WarpPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.Tab))
         {
+            reticle.GetComponent<Animator>().SetBool("WarpMode", true);
+            screenTint.GetComponent<Image>().color = /*Color.Lerp(screenTint.GetComponent<Image>().color, */targetColor;//, Time.deltaTime * lerpSpeed);
             CheckForWarpPoint();
         }
-        else if (visibleWarpPoint != null)
+        else if (!isWarping)
         {
-            visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
-            visibleWarpPoint = null;
+            if (visibleWarpPoint != null)
+            {
+                visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
+                visibleWarpPoint = null;
+            }
+            screenTint.GetComponent<Image>().color = /*Color.Lerp(screenTint.GetComponent<Image>().color, */new Color(0, 0, 0, 0);//, Time.deltaTime * lerpSpeed);
+            reticle.GetComponent<Animator>().SetBool("WarpMode", false);
         }
 
         if (isWarping)
@@ -72,15 +85,19 @@ public class WarpPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (visibleWarpPoint != null && collider.gameObject.transform == visibleWarpPoint.transform.GetChild(0))
+        if (!isWarping && visibleWarpPoint != null)
         {
-            destinationPosition = visibleWarpPoint.transform.GetChild(1).transform.position;
-            isWarping = true;
+            if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(0))
+            {
+                destinationPosition = visibleWarpPoint.transform.GetChild(1).transform.position;
+                isWarping = true;
+            }
+            else if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(1))
+            {
+                destinationPosition = visibleWarpPoint.transform.GetChild(0).transform.position;
+                isWarping = true;
+            }
         }
-        else if (visibleWarpPoint != null && collider.gameObject.transform == visibleWarpPoint.transform.GetChild(1))
-        {
-            destinationPosition = visibleWarpPoint.transform.GetChild(0).transform.position;
-            isWarping = true;
-        }
+
     }
 }
