@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7497152842157480161}
   - component: {fileID: 9172282958836448577}
   - component: {fileID: 2705579698637061734}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 3544097349235055678}
   - component: {fileID: 6805284264716223082}
   - component: {fileID: 5899163210589049158}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5335,7 +5335,7 @@ GameObject:
   - component: {fileID: 6394481237607310856}
   - component: {fileID: 6804056346031017051}
   - component: {fileID: 3960569777549749834}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eyebrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5440,7 +5440,7 @@ GameObject:
   - component: {fileID: 2551967650826569150}
   - component: {fileID: 7313664968174830453}
   - component: {fileID: 8256707983350558835}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5581,7 +5581,7 @@ GameObject:
   - component: {fileID: 6600714683308634005}
   - component: {fileID: 3193441318341961785}
   - component: {fileID: 1610541374509720513}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eyebrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ public class PrototypeGameManager : MonoBehaviour
 {
     public TextMeshProUGUI screenMessage;
     public bool playerAlive = true;
-    public bool gameRunning = false; // Game doesn't start running until message is done
+    public static bool gameRunning = false; // Game doesn't start running until message is done
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +42,7 @@ public class PrototypeGameManager : MonoBehaviour
 
     public void WinMessage(string yourMessage)
     {
+        gameRunning = false;
         screenMessage.SetText("<color=green>" + yourMessage + "</color>");
         Invoke("ReloadGame", 2);
     }

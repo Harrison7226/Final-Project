@@ -10,6 +10,7 @@ public class WarpPlayer : MonoBehaviour
     public Image reticle;
     public Image screenTint;
     public Color targetColor;
+    public AudioClip warpSFX;
    // public float lerpSpeed = 1;
 
     private bool isWarping = false;
@@ -28,15 +29,14 @@ public class WarpPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.Tab))
         {
             reticle.GetComponent<Animator>().SetBool("WarpMode", true);
-            screenTint.GetComponent<Image>().color = /*Color.Lerp(screenTint.GetComponent<Image>().color, */targetColor;//, Time.deltaTime * lerpSpeed);
+            screenTint.GetComponent<Image>().color = targetColor;
             CheckForWarpPoint();
         }
         else if (!isWarping)
         {
             if (visibleWarpPoint != null)
             {
-                visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
-                visibleWarpPoint = null;
+                DeactivateWarpPoint();
             }
             screenTint.GetComponent<Image>().color = /*Color.Lerp(screenTint.GetComponent<Image>().color, */new Color(0, 0, 0, 0);//, Time.deltaTime * lerpSpeed);
             reticle.GetComponent<Animator>().SetBool("WarpMode", false);
@@ -66,20 +66,19 @@ public class WarpPlayer : MonoBehaviour
         {
             if (hit.collider.CompareTag("WarpPoint"))
             {
-               
-                hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = true;
                 visibleWarpPoint = hit.collider.gameObject;
+                visibleWarpPoint.GetComponent<MeshRenderer>().enabled = true;
+                visibleWarpPoint.transform.GetChild(0).gameObject.SetActive(true);
+                visibleWarpPoint.transform.GetChild(1).gameObject.SetActive(true);
             }
             else if (visibleWarpPoint != null)
             {
-                visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
-                visibleWarpPoint = null;
+                DeactivateWarpPoint();
             }
         }
         else if (visibleWarpPoint != null)
         {
-            visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
-            visibleWarpPoint = null;
+            DeactivateWarpPoint();
         }
     }
 
@@ -90,14 +89,24 @@ public class WarpPlayer : MonoBehaviour
             if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(0))
             {
                 destinationPosition = visibleWarpPoint.transform.GetChild(1).transform.position;
+                AudioSource.PlayClipAtPoint(warpSFX, transform.position);
                 isWarping = true;
             }
             else if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(1))
             {
                 destinationPosition = visibleWarpPoint.transform.GetChild(0).transform.position;
+                AudioSource.PlayClipAtPoint(warpSFX, transform.position);
                 isWarping = true;
             }
         }
 
+    }
+
+    private void DeactivateWarpPoint()
+    {
+        visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
+        visibleWarpPoint.transform.GetChild(0).gameObject.SetActive(false);
+        visibleWarpPoint.transform.GetChild(1).gameObject.SetActive(false);
+        visibleWarpPoint = null;
     }
 }

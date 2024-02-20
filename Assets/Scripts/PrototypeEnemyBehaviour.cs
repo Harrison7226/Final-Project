@@ -25,7 +25,13 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     {
         if (alive)
         {
-            transform.LookAt(targetTransform);
+            RaycastHit enemyView;
+            if (Vector3.Dot(targetTransform.position - transform.position, transform.forward) > 0
+                && Physics.Raycast(transform.position, targetTransform.position - transform.position, out enemyView, Mathf.Infinity)
+                && enemyView.collider.CompareTag("Player"))
+            {
+                transform.LookAt(targetTransform);
+            }
 
             RaycastHit gunview;
             if (Physics.Raycast(transform.position, transform.forward, out gunview, Mathf.Infinity))
