@@ -6463,7 +6463,7 @@ MonoBehaviour:
   runSpeed: 24
   jumpPower: 7
   gravity: 20
-  lookSpeed: 3
+  lookSpeed: 1.5
   lookXLimit: 45
   canMove: 1
 --- !u!54 &534391379
