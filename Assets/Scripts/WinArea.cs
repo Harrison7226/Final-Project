@@ -8,7 +8,7 @@ public class WinArea : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            FindObjectOfType<PrototypeGameManager>().WinMessage("Good job, Valentina. Mission success.");
+            FindObjectOfType<PrototypeGameManager>().WinMessage("Flanagan: Spectacular work, Valentina. We'll get you out of there shortly.");
         }
     }
 }

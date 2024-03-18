@@ -9,18 +9,50 @@ public class PrototypeGameManager : MonoBehaviour
     public TextMeshProUGUI screenMessage;
     public bool playerAlive = true;
     public static bool gameRunning = false; // Game doesn't start running until message is done
+    public static bool briefed = false;
+
+    public int currentLevel = 0;
+
+    public AudioSource voiceLines;
+    public AudioClip missionStartSFX;
+    public AudioClip missionBriefSFX;
+    public AudioClip missionWinSFX;
+    
+    private AudioSource music;
 
     // Start is called before the first frame update
     void Start()
     {
+        music = GetComponent<AudioSource>();
+
         FreezePlayer();
 
-        screenMessage.SetText("<color=white>OK Valentina, infiltrate the bank's vault. Go!</color>");
-        Invoke("ClearMessage", 3);
+        if (!briefed)
+        {
+            AudioSource.PlayClipAtPoint(missionBriefSFX, Camera.main.transform.position);
+            screenMessage.SetText("Flanagan: Alright Valentina, you know the mission. Get to the vault, we got your escape route covered. Good luck, friend.");
+            Invoke("ClearMessage", 5);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(missionStartSFX, Camera.main.transform.position);
+            screenMessage.SetText("Get to the vault and phase through its wall!");
+            Invoke("ClearMessage", 3);
+        }
+    }
+
+    public void SayLine(AudioClip clipSFX)
+    {
+        voiceLines.clip = clipSFX;
+        voiceLines.Play();
     }
 
     public void ClearMessage()
     {
+        if (!briefed)
+        {
+            briefed = true;
+        }
         screenMessage.SetText("");
         if (playerAlive && !gameRunning)
         {
@@ -42,9 +74,13 @@ public class PrototypeGameManager : MonoBehaviour
 
     public void WinMessage(string yourMessage)
     {
-        gameRunning = false;
-        screenMessage.SetText("<color=green>" + yourMessage + "</color>");
-        Invoke("ReloadGame", 2);
+        if (gameRunning)
+        {
+            gameRunning = false;
+            SayLine(missionWinSFX);
+            screenMessage.SetText("<color=green>" + yourMessage + "</color>");
+            Invoke("ReloadGame", 4);
+        }
     }
 
     public void ReloadGame()

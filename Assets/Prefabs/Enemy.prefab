@@ -258,6 +258,8 @@ MonoBehaviour:
   gun: {fileID: 6149750337301901137}
   alive: 1
   canShoot: 1
+  riggedEnemy: 0
+  gunHeight: 0
 --- !u!1 &5088024960934048901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5239,7 +5241,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f4957968cfd342c0a43497c5c2420a1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.479
+  m_Volume: 0.099
   m_Pitch: 1
   Loop: 0
   Mute: 0

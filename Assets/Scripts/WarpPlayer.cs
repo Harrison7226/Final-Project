@@ -89,13 +89,15 @@ public class WarpPlayer : MonoBehaviour
             if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(0))
             {
                 destinationPosition = visibleWarpPoint.transform.GetChild(1).transform.position;
-                AudioSource.PlayClipAtPoint(warpSFX, transform.position);
+                collider.gameObject.GetComponent<AudioSource>().Play();
+                // AudioSource.PlayClipAtPoint(warpSFX, transform.position);
                 isWarping = true;
             }
             else if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(1))
             {
                 destinationPosition = visibleWarpPoint.transform.GetChild(0).transform.position;
-                AudioSource.PlayClipAtPoint(warpSFX, transform.position);
+                collider.gameObject.GetComponent<AudioSource>().Play();
+                // AudioSource.PlayClipAtPoint(warpSFX, transform.position);
                 isWarping = true;
             }
         }

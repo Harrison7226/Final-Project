@@ -110,5 +110,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             }
         }
 
+        Destroy(gameObject, 2);
+
     }
 }

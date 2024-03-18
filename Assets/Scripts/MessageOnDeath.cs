@@ -7,6 +7,7 @@ public class MessageOnDeath : MonoBehaviour
 {
     public string message;
     public TextMeshProUGUI screenMessage;
+    public AudioClip voiceLineSFX;
     private bool messageSaid = false;
 
     // Start is called before the first frame update
@@ -21,8 +22,9 @@ public class MessageOnDeath : MonoBehaviour
         if (!messageSaid && !GetComponent<PrototypeEnemyBehaviour>().alive)
         {
             screenMessage.SetText(message);
+            if (voiceLineSFX != null) GameObject.FindObjectOfType<PrototypeGameManager>().SayLine(voiceLineSFX);
             messageSaid = true;
-            Invoke("ClearMessage", 5);
+            Invoke("ClearMessage", 6);
         }
     }
 
