@@ -6812,6 +6812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 1910644296}
+  reloadingText: {fileID: 0}
+  reloadAudioSource: {fileID: 0}
+  maxBullets: 6
+  bullets: 6
 --- !u!81 &2137475710
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6912,6 +6916,10 @@ PrefabInstance:
     - target: {fileID: 1189959972550357785, guid: cec872320f6bb415fbcddfed62fcfbda, type: 3}
       propertyPath: m_Name
       value: HealthKit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043483953376675261, guid: cec872320f6bb415fbcddfed62fcfbda, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8635509121613175892, guid: cec872320f6bb415fbcddfed62fcfbda, type: 3}
       propertyPath: m_LocalPosition.x

@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: 0, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1650515786803262757}
   m_Father: {fileID: 0}
@@ -48,7 +48,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b1fa1c7bb72a24105adb4e47ffd7d399, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa53e97eeb07f44aaa9ff5b2236c4e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 20
+  healAmount: 50
   healSound: {fileID: 8300000, guid: 7c78a99611bb9497ab687ba48afa52a8, type: 3}
 --- !u!65 &485610399967839954
 BoxCollider:
