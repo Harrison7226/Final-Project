@@ -18852,11 +18852,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 61827852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &940753017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3265751869195100022, guid: 511cb7bc7e78a234c94f366f8e74319c, type: 3}
+  m_PrefabInstance: {fileID: 1137199490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &940753018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2153294797276698191, guid: 511cb7bc7e78a234c94f366f8e74319c, type: 3}
   m_PrefabInstance: {fileID: 1137199490}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &940753023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940753017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e676ca33f845147b9e98d4afda9467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: '<color=white>Flanagan: The network says you''re near a warp point. You
+    should try to scan the walls. (Hold TAB)!</color>'
+  screenMessage: {fileID: 1587191259}
+  voiceLineSFX: {fileID: 8300000, guid: b8263614a84c148df81e1e3942065f71, type: 3}
 --- !u!1001 &943948941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22480,7 +22501,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3265751869195100022, guid: 511cb7bc7e78a234c94f366f8e74319c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 940753023}
   m_SourcePrefab: {fileID: 100100000, guid: 511cb7bc7e78a234c94f366f8e74319c, type: 3}
 --- !u!1001 &1139638882
 PrefabInstance:
