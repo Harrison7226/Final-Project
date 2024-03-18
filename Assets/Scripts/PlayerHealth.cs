@@ -25,17 +25,12 @@ public class PlayerHealth : MonoBehaviour
     {
         health = Mathf.Clamp(health, 0, maxHealth);
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(Random.Range(5, 10));
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            RestoreHealth(Random.Range(5, 10));
-        }
-
         UpdateHealthUI();
+
+        if (health <= 0)
+        {
+            FindObjectOfType<PrototypeGameManager>().GameOverMessage("You died! Game over.");
+        }
     }
 
     private void UpdateHealthUI()

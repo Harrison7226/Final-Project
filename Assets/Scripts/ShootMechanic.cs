@@ -65,7 +65,7 @@ public class ShootMechanic : MonoBehaviour
             else
             {
                 Reload();
-                
+
             }
         }
     }
@@ -74,15 +74,15 @@ public class ShootMechanic : MonoBehaviour
     void Reload()
     {
         if (!reloading)
-                {
-                    reloading = true;
-                    reloadAudioSource.Play();
-                    
-                    reloadingText.SetActive(true);
-                    gun.SetActive(false);
-                    
-                    Invoke("FinishReload", 3);
-                }
+        {
+            reloading = true;
+            reloadAudioSource.Play();
+
+            reloadingText.SetActive(true);
+            gun.SetActive(false);
+
+            Invoke("FinishReload", 3);
+        }
     }
 
     // Finish reloading
@@ -93,5 +93,5 @@ public class ShootMechanic : MonoBehaviour
         reloading = false;
         gun.SetActive(true);
     }
-    
+
 }

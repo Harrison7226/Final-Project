@@ -84,7 +84,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             {
                 if (gunshot.collider.CompareTag("Player"))
                 {
-                    FindObjectOfType<PrototypeGameManager>().GameOverMessage("You were shot! Game over.");
+                    FindObjectOfType<PlayerHealth>().TakeDamage(25);
                 }
             }
         }
@@ -93,8 +93,6 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     public void Die()
     {
         alive = false;
-
-
 
         if (!riggedEnemy)
         {
