@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 2152479272092730327}
   - component: {fileID: 715439046909137607}
   - component: {fileID: 3273733490096601346}
+  - component: {fileID: 3676783093832080979}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -289,7 +290,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.09, y: 2.74, z: -5.52}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7258221610272480869}
@@ -362,8 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 3270345799611653088}
-  walkSpeed: 12
-  runSpeed: 24
+  walkSpeed: 4
+  runSpeed: 8
   jumpPower: 7
   gravity: 20
   lookSpeed: 1.5
@@ -403,6 +404,22 @@ MonoBehaviour:
   chipSpeed: 2
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
+--- !u!114 &3676783093832080979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4318107361355765041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896cb3516392c4377b40e77c0aa5b16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 3270345799611653088}
+  interactionDistance: 3
+  interactionUI: {fileID: 0}
+  interactionText: {fileID: 0}
 --- !u!1 &4687095197653711475
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3987590852297594892}
   - component: {fileID: 5224079541769821529}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +668,7 @@ GameObject:
   - component: {fileID: 5350070160068311437}
   - component: {fileID: 781080731314722992}
   - component: {fileID: 6505024629147071035}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5669,7 +5686,7 @@ Camera:
   m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5691,7 +5708,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 112434, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 112434, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5699,7 +5716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 115448, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 115448, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5711,7 +5728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 184040, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 184040, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5719,7 +5736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 188506, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 188506, guid: 5e41505804200314f8239458ca194166, type: 3}
       propertyPath: m_StaticEditorFlags

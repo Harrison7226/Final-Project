@@ -40,7 +40,7 @@ public class ShootMechanic : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && PrototypeGameManager.gameRunning && !reloading)
+        if (Input.GetMouseButtonDown(0) && PrototypeGameManager.gameRunning && !reloading && gun.activeSelf)
         {
             if (bullets > 0)
             {
