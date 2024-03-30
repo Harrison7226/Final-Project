@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,11 @@ public class ShootMechanic : MonoBehaviour
     public GameObject gun;
     public GameObject reloadingText;
     public AudioSource reloadAudioSource;
+    public AudioSource emptyAudioSource;
 
     public int maxBullets = 6;
     public int bullets = 6;
+    public int magazine = 30;
 
     private ParticleSystem muzzleFlashEffect;
     private AudioSource gunAudio;
@@ -20,9 +23,11 @@ public class ShootMechanic : MonoBehaviour
     public Color enemyColor;
     public Color civilianColor;
 
+    public TextMeshProUGUI bulletsText;
+    public TextMeshProUGUI magazineText;
+
     Color originalReticleColor;
 
-    // Start is called before the first frame update
     void Start()
     {
         muzzleFlashEffect = gun.transform.Find("MuzzleFlashEffect").GetComponent<ParticleSystem>();
@@ -33,58 +38,62 @@ public class ShootMechanic : MonoBehaviour
         originalReticleColor = reticleImage.color;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && PrototypeGameManager.gameRunning)
+        if (Input.GetMouseButtonDown(0) && PrototypeGameManager.gameRunning && !reloading)
         {
             if (bullets > 0)
             {
-                muzzleFlashEffect.Play();
-                gunAudio.Play();
-                bullets--;
-
-                RaycastHit gunshot;
-                if (Physics.Raycast(transform.position, transform.forward, out gunshot, Mathf.Infinity))
-                {
-                    if (gunshot.collider.CompareTag("Enemy"))
-                    {
-                        Rigidbody enemyRB = gunshot.collider.gameObject.GetComponent<Rigidbody>();
-                        PrototypeEnemyBehaviour enemyEB = gunshot.collider.gameObject.GetComponent<PrototypeEnemyBehaviour>();
-                        if (enemyRB != null)
-                        {
-                            if (enemyEB != null && enemyEB.alive)
-                            {
-                                enemyEB.Die();
-                            }
-                        }
-                    }
-                    else if (gunshot.collider.CompareTag("Civilian"))
-                    {
-                        FindObjectOfType<PrototypeGameManager>().GameOverMessage("You shot a civilian! Game over.");
-                    }
-                }
-
-                if (bullets == 0)
-                {
-                    Invoke("Reload", 0.1f);
-                }
-
+                Shoot();
             }
-            else
+            else if (bullets == 0 && magazine == 0)
             {
-                Reload();
-
+                emptyAudioSource.Play();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && bullets < maxBullets && magazine > 0)
+        {
+            Reload();
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         ReticleEffect();
     }
 
-    // Start reloading
+    void Shoot()
+    {
+        muzzleFlashEffect.Play();
+        gunAudio.Play();
+        bullets--;
+        UpdateUI();
+
+        RaycastHit gunshot;
+        if (Physics.Raycast(transform.position, transform.forward, out gunshot, Mathf.Infinity))
+        {
+            if (gunshot.collider.CompareTag("Enemy"))
+            {
+                Rigidbody enemyRB = gunshot.collider.gameObject.GetComponent<Rigidbody>();
+                PrototypeEnemyBehaviour enemyEB = gunshot.collider.gameObject.GetComponent<PrototypeEnemyBehaviour>();
+                if (enemyRB != null && enemyEB != null && enemyEB.alive)
+                {
+                    enemyEB.Die();
+                }
+            }
+            else if (gunshot.collider.CompareTag("Civilian"))
+            {
+                FindObjectOfType<PrototypeGameManager>().GameOverMessage("You shot a civilian! Game over.");
+            }
+        }
+
+        if (bullets == 0 && magazine > 0)
+        {
+            Invoke("Reload", 0.1f);
+        }
+    }
+
     void Reload()
     {
         if (!reloading)
@@ -95,17 +104,28 @@ public class ShootMechanic : MonoBehaviour
             reloadingText.SetActive(true);
             gun.SetActive(false);
 
+            int bulletsToReload = maxBullets - bullets;
+            if (bulletsToReload > magazine)
+            {
+                bullets += magazine;
+                magazine = 0;
+            }
+            else
+            {
+                bullets += bulletsToReload;
+                magazine -= bulletsToReload;
+            }
+
             Invoke("FinishReload", 3);
         }
     }
 
-    // Finish reloading
     void FinishReload()
     {
-        bullets = maxBullets;
         reloadingText.SetActive(false);
         reloading = false;
         gun.SetActive(true);
+        UpdateUI();
     }
 
     void ReticleEffect()
@@ -117,30 +137,29 @@ public class ShootMechanic : MonoBehaviour
             if (hit.collider.CompareTag("Enemy"))
             {
                 reticleImage.color = Color.Lerp(reticleImage.color, enemyColor, Time.deltaTime * 2);
-
                 reticleImage.transform.localScale = Vector3.Lerp(reticleImage.transform.localScale, new Vector3(0.7f, 0.7f, 1), Time.deltaTime * 2);
             }
-
             else if (hit.collider.CompareTag("Civilian"))
             {
                 reticleImage.color = Color.Lerp(reticleImage.color, civilianColor, Time.deltaTime * 2);
-
                 reticleImage.transform.localScale = Vector3.Lerp(reticleImage.transform.localScale, new Vector3(0.7f, 0.7f, 1), Time.deltaTime * 2);
             }
-
             else
             {
                 reticleImage.color = Color.Lerp(reticleImage.color, originalReticleColor, Time.deltaTime * 2);
-
                 reticleImage.transform.localScale = Vector3.Lerp(reticleImage.transform.localScale, Vector3.one, Time.deltaTime * 2);
             }
-
         }
         else
         {
             reticleImage.color = Color.Lerp(reticleImage.color, originalReticleColor, Time.deltaTime * 2);
-
             reticleImage.transform.localScale = Vector3.Lerp(reticleImage.transform.localScale, Vector3.one, Time.deltaTime * 2);
         }
+    }
+
+    void UpdateUI()
+    {
+        bulletsText.SetText(bullets.ToString() + "/");
+        magazineText.SetText(magazine.ToString());
     }
 }

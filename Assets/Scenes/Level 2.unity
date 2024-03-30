@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10115,6 +10115,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 496308, guid: 847684ad3b2b2af4cbcba417aab6adb0, type: 3}
   m_PrefabInstance: {fileID: 764033541}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &764205124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1615606499748759160, guid: 7f904491af562ca4db738024e6074381, type: 3}
+  m_PrefabInstance: {fileID: 1364065151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &774558596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12935,7 +12946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 181029295419401583, guid: f663df548972da8438c8cba504d07053, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.5
+      value: -6.7
       objectReference: {fileID: 0}
     - target: {fileID: 181029295419401583, guid: f663df548972da8438c8cba504d07053, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12989,6 +13000,14 @@ PrefabInstance:
       propertyPath: walkSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3233907768038175874, guid: f663df548972da8438c8cba504d07053, type: 3}
+      propertyPath: bulletsText
+      value: 
+      objectReference: {fileID: 764205124}
+    - target: {fileID: 3233907768038175874, guid: f663df548972da8438c8cba504d07053, type: 3}
+      propertyPath: magazineText
+      value: 
+      objectReference: {fileID: 1721809853}
     - target: {fileID: 3233907768038175874, guid: f663df548972da8438c8cba504d07053, type: 3}
       propertyPath: reticleImage
       value: 
@@ -21422,6 +21441,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 496308, guid: 847684ad3b2b2af4cbcba417aab6adb0, type: 3}
   m_PrefabInstance: {fileID: 1717362630}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1721809853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3750796713337733200, guid: 7f904491af562ca4db738024e6074381, type: 3}
+  m_PrefabInstance: {fileID: 1364065151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1734664424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1542635474234204660, guid: 687abaa2bd27bb3409f7e2c21d57e6cb, type: 3}

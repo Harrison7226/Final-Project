@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1893,6 +1893,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.26243067, y: 1.7085764, z: 0.29040378}
   m_Center: {x: -0.00012594461, y: 0.97076476, z: -0.024616182}
+--- !u!114 &66301092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1615606499748759160, guid: 7f904491af562ca4db738024e6074381, type: 3}
+  m_PrefabInstance: {fileID: 6449336767393196048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &68911712
 GameObject:
   m_ObjectHideFlags: 0
@@ -42895,6 +42906,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc5c38b031b6fd40ba6b187c904af9a, type: 3}
+--- !u!114 &1839287044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3750796713337733200, guid: 7f904491af562ca4db738024e6074381, type: 3}
+  m_PrefabInstance: {fileID: 6449336767393196048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1843317101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52123,6 +52145,14 @@ PrefabInstance:
       propertyPath: screenTint
       value: 
       objectReference: {fileID: 290124164}
+    - target: {fileID: 3233907768038175874, guid: f663df548972da8438c8cba504d07053, type: 3}
+      propertyPath: bulletsText
+      value: 
+      objectReference: {fileID: 66301092}
+    - target: {fileID: 3233907768038175874, guid: f663df548972da8438c8cba504d07053, type: 3}
+      propertyPath: magazineText
+      value: 
+      objectReference: {fileID: 1839287044}
     - target: {fileID: 3233907768038175874, guid: f663df548972da8438c8cba504d07053, type: 3}
       propertyPath: reticleImage
       value: 
