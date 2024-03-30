@@ -18046,6 +18046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3750796713337733200, guid: 7f904491af562ca4db738024e6074381, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6962058803542671731, guid: 7f904491af562ca4db738024e6074381, type: 3}
       propertyPath: m_Pivot.x
       value: 0
