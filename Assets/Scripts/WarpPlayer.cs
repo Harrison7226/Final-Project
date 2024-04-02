@@ -21,10 +21,6 @@ public class WarpPlayer : MonoBehaviour
     void Start()
     {
         visibleWarpPoints = GameObject.FindGameObjectsWithTag("WarpPoint");
-        foreach (GameObject go in visibleWarpPoints)
-        {
-            Debug.Log(go);
-        }
     }
 
     // Update is called once per frame

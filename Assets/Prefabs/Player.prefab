@@ -125,6 +125,7 @@ MonoBehaviour:
   maxBullets: 6
   bullets: 6
   magazine: 30
+  alertRange: 50
   reticleImage: {fileID: 0}
   enemyColor: {r: 0.83, g: 0, b: 0, a: 1}
   civilianColor: {r: 0.06941971, g: 0.71663034, b: 0.9811321, a: 1}

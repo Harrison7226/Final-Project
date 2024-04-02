@@ -10,10 +10,13 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     public bool canShoot = true; // Can this character attack?
     public bool riggedEnemy = false; // Rigged enemy or Capsule enemy?
     public float gunHeight = 0f; // States gun height for ray-tracing purposes. 2f works well for rigged enemies
+    public float shootDelay = 1f; // States how long enemies should wait before shooting
+    public GameObject eyes;
     
     private Transform targetTransform; // The player's transform. What the enemy will look at
     private ParticleSystem muzzleFlashEffect; // Gun muzzle flash effect
     private AudioSource gunAudio; // Gunshot sound effect
+    private bool alerted;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
         targetTransform = FindObjectOfType<FPSController>().gameObject.transform;
         muzzleFlashEffect = gun.transform.Find("MuzzleFlashEffect").GetComponent<ParticleSystem>();
         gunAudio = gun.GetComponent<AudioSource>();
+        alerted = false;
     }
 
     void FixedUpdate()
@@ -28,8 +32,8 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
         if (alive)
         {
             RaycastHit enemyView;
-            if (Vector3.Dot(targetTransform.position - transform.position, transform.forward) > 0
-                && Physics.Raycast(transform.position, targetTransform.position - transform.position, out enemyView, Mathf.Infinity)
+            if ((Vector3.Dot(targetTransform.position - transform.position, transform.forward) > 0 || alerted)
+                && Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out enemyView, Mathf.Infinity)
                 && enemyView.collider.CompareTag("Player"))
             {
 
@@ -39,7 +43,15 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                 // looking upwards when they face the player
                 Vector3 targetPosition = enemyView.collider.gameObject.transform.position;
                 targetPosition.y = transform.position.y;
-                transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
+                if (Mathf.Abs(Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down)) < 10)
+                {
+                    transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
+                } 
+                else
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.FromToRotation(transform.forward, (targetPosition - transform.position)), Time.deltaTime * 5);
+                }
+
 
 
                 if (GetComponent<Animator>() != null)
@@ -53,6 +65,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                 {
                     GetComponent<Animator>().SetInteger("AnimState", 0);
                 }
+
             }
 
             RaycastHit gunview;
@@ -63,7 +76,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                     if (canShoot)
                     {
                         canShoot = false;
-                        Invoke("Shoot", 1);
+                        Invoke("Shoot", shootDelay);
                     }
                 }
             }
@@ -110,5 +123,21 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
 
         Destroy(gameObject, 2);
 
+    }
+
+    public void OnAlert()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(eyes.transform.position, targetTransform.position - transform.position, out hit, Mathf.Infinity))
+        {
+            alerted = true;
+            Invoke("OffAlert", 3);
+        }
+
+    }
+
+    void OffAlert()
+    {
+        alerted = false;
     }
 }

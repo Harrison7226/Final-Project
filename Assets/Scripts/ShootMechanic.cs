@@ -15,6 +15,8 @@ public class ShootMechanic : MonoBehaviour
     public int bullets = 6;
     public int magazine = 30;
 
+    public float alertRange = 50f;
+
     private ParticleSystem muzzleFlashEffect;
     private AudioSource gunAudio;
     private bool reloading = false;
@@ -91,6 +93,15 @@ public class ShootMechanic : MonoBehaviour
         if (bullets == 0 && magazine > 0)
         {
             Invoke("Reload", 0.1f);
+        }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies) 
+        {
+            if (Vector3.Distance(enemy.transform.position, transform.position) < alertRange)
+            {
+                enemy.GetComponent<PrototypeEnemyBehaviour>().OnAlert();
+            }
         }
     }
 
