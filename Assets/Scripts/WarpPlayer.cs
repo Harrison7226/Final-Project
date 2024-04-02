@@ -15,12 +15,16 @@ public class WarpPlayer : MonoBehaviour
 
     private bool isWarping = false;
     private Vector3 destinationPosition;
-    private GameObject visibleWarpPoint;
+    private GameObject[] visibleWarpPoints;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        visibleWarpPoints = GameObject.FindGameObjectsWithTag("WarpPoint");
+        foreach (GameObject go in visibleWarpPoints)
+        {
+            Debug.Log(go);
+        }
     }
 
     // Update is called once per frame
@@ -34,11 +38,11 @@ public class WarpPlayer : MonoBehaviour
         }
         else if (!isWarping)
         {
-            if (visibleWarpPoint != null)
+            foreach (GameObject warpPoint in visibleWarpPoints)
             {
-                DeactivateWarpPoint();
+                DeactivateWarpPoint(warpPoint);
             }
-            screenTint.GetComponent<Image>().color = /*Color.Lerp(screenTint.GetComponent<Image>().color, */new Color(0, 0, 0, 0);//, Time.deltaTime * lerpSpeed);
+            screenTint.GetComponent<Image>().color = new Color(0, 0, 0, 0);
             reticle.GetComponent<Animator>().SetBool("WarpMode", false);
         }
 
@@ -61,54 +65,39 @@ public class WarpPlayer : MonoBehaviour
 
     private void CheckForWarpPoint()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, Mathf.Infinity))
+        foreach (GameObject warpPoint in visibleWarpPoints)
         {
-            if (hit.collider.CompareTag("WarpPoint"))
-            {
-                visibleWarpPoint = hit.collider.gameObject;
-                visibleWarpPoint.GetComponent<MeshRenderer>().enabled = true;
-                visibleWarpPoint.transform.GetChild(0).gameObject.SetActive(true);
-                visibleWarpPoint.transform.GetChild(1).gameObject.SetActive(true);
-            }
-            else if (visibleWarpPoint != null)
-            {
-                DeactivateWarpPoint();
-            }
-        }
-        else if (visibleWarpPoint != null)
-        {
-            DeactivateWarpPoint();
+            warpPoint.GetComponent<MeshRenderer>().enabled = true;
+            warpPoint.transform.GetChild(0).gameObject.SetActive(true);
+            warpPoint.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (!isWarping && visibleWarpPoint != null)
+        if (!isWarping)
         {
-            if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(0))
+            if (collider.gameObject.transform.parent.GetChild(0).gameObject == collider.gameObject)
             {
-                destinationPosition = visibleWarpPoint.transform.GetChild(1).transform.position;
+                destinationPosition = collider.gameObject.transform.parent.GetChild(1).transform.position;
                 collider.gameObject.GetComponent<AudioSource>().Play();
-                // AudioSource.PlayClipAtPoint(warpSFX, transform.position);
                 isWarping = true;
             }
-            else if (collider.gameObject.transform == visibleWarpPoint.transform.GetChild(1))
+            else if (collider.gameObject.transform.parent.GetChild(1).gameObject == collider.gameObject)
             {
-                destinationPosition = visibleWarpPoint.transform.GetChild(0).transform.position;
+                destinationPosition = collider.gameObject.transform.parent.GetChild(0).transform.position;
                 collider.gameObject.GetComponent<AudioSource>().Play();
-                // AudioSource.PlayClipAtPoint(warpSFX, transform.position);
                 isWarping = true;
             }
+
         }
 
     }
 
-    private void DeactivateWarpPoint()
+    private void DeactivateWarpPoint(GameObject warpPoint)
     {
-        visibleWarpPoint.GetComponent<MeshRenderer>().enabled = false;
-        visibleWarpPoint.transform.GetChild(0).gameObject.SetActive(false);
-        visibleWarpPoint.transform.GetChild(1).gameObject.SetActive(false);
-        visibleWarpPoint = null;
+        warpPoint.GetComponent<MeshRenderer>().enabled = false;
+        warpPoint.transform.GetChild(0).gameObject.SetActive(false);
+        warpPoint.transform.GetChild(1).gameObject.SetActive(false);
     }
 }
