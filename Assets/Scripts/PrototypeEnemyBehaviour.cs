@@ -128,10 +128,14 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     public void OnAlert()
     {
         RaycastHit hit;
-        if (Physics.Raycast(eyes.transform.position, targetTransform.position - transform.position, out hit, Mathf.Infinity))
+        if (Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out hit, Mathf.Infinity)
+             && hit.collider.CompareTag("Player"))
         {
             alerted = true;
             Invoke("OffAlert", 3);
+        } else
+        {
+            alerted = false;
         }
 
     }
