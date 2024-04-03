@@ -389,6 +389,72 @@ MonoBehaviour:
   screenTint: {fileID: 0}
   targetColor: {r: 0, g: 0, b: 0, a: 0.28235295}
   warpSFX: {fileID: 8300000, guid: 2cdfacf0e34c1ee44b0440bba27f8fc7, type: 3}
+  screenEffectSprites:
+  - {fileID: 609231507, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1069470864, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -2099055360, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 72604715, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -2125157922, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1554546330, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1872026964, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -622831701, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1516924910, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1780798080, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 2050179545, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1565503367, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1388229002, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1835707684, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1416988375, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1060553774, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 825791129, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1905924647, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 197344721, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1770451134, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -546544911, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 152907054, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -87255831, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -724869906, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -886630658, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1197739175, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1429064734, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 88406964, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1901778945, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1051431935, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -519964025, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1475878158, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1777844588, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 215893889, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 125821736, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 148354661, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1729257192, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 748349445, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 770034384, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1189557323, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -2092427106, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 982324858, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -121725161, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -271299472, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1932551273, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 317030503, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -685474419, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1802132725, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 364672287, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -322318144, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1439357153, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 461655349, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 2012384239, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1064626560, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1346800824, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -311442120, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 589717452, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -1472805150, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -975869625, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1445707865, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 696218550, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1878777640, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: 1218332448, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  - {fileID: -4748328, guid: f666f74f603ee574e945bb1ffc80f137, type: 3}
+  screenEffectSpeed: 10
 --- !u!114 &3273733490096601346
 MonoBehaviour:
   m_ObjectHideFlags: 0
