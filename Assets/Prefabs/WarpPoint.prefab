@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 2016682668915602719}
   - component: {fileID: 3880350240228376618}
   m_Layer: 0
-  m_Name: potentialWarpPointSpriteSheet3_0 (1)
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 6060719860205649334}
   - component: {fileID: 5835132931906602165}
   m_Layer: 0
-  m_Name: potentialWarpPointSpriteSheet3_0
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
