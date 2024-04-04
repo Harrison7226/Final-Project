@@ -19,6 +19,9 @@ public class Keypad : MonoBehaviour, IInteractable
     public AudioSource button;
     public AudioSource correct;
     public AudioSource wrong;
+    public AudioSource vault;
+
+    private bool answeredCorrectly = false;
 
     void Start()
     {
@@ -41,7 +44,9 @@ public class Keypad : MonoBehaviour, IInteractable
     {
         if (typedText.text == answer)
         {
+            answeredCorrectly = true;
             correct.Play();
+            vault.Play();
             vaultDoor.GetComponent<Animator>().SetBool("open", true);
         }
         else
