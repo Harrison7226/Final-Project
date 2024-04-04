@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PrototypeEnemyBehaviour : MonoBehaviour
 {
@@ -18,19 +19,50 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     private AudioSource gunAudio; // Gunshot sound effect
     private bool alerted;
 
+    public bool smartAgent = false; // Is this a smart AI or will it stay in place?
+    public Transform[] wanderPoints; // List of all wander points.
+    private int wanderPointIndex = 0; // Index of current wander point.
+    private NavMeshAgent agent;
+    private Vector3 nextDestination; // Next place to wander to
+
     // Start is called before the first frame update
     void Start()
     {
+        nextDestination = transform.position;
+
         targetTransform = FindObjectOfType<FPSController>().gameObject.transform;
         muzzleFlashEffect = gun.transform.Find("MuzzleFlashEffect").GetComponent<ParticleSystem>();
         gunAudio = gun.GetComponent<AudioSource>();
         alerted = false;
+
+        if (smartAgent)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.SetDestination(nextDestination);
+        }
     }
 
     void FixedUpdate()
     {
         if (alive)
         {
+            if (smartAgent)
+            {
+                FaceTarget(nextDestination);
+
+                if (Vector3.Distance(nextDestination, transform.position) < 1f)
+                {
+                    wanderPointIndex++;
+                    if (wanderPointIndex > wanderPoints.Length - 1)
+                    {
+                        wanderPointIndex = 0;
+                    }
+                    nextDestination = wanderPoints[wanderPointIndex].position;
+
+                    agent.SetDestination(nextDestination);
+                }
+            }
+
             RaycastHit enemyView;
             if ((Vector3.Dot(targetTransform.position - transform.position, transform.forward) > 0 || alerted)
                 && Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out enemyView, Mathf.Infinity)
@@ -83,6 +115,14 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
         }
     }
 
+    private void FaceTarget(Vector3 destination)
+    {
+        Vector3 lookPos = destination - transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.05f);  
+    }
+
     void Shoot()
     {
         if (alive)
@@ -105,6 +145,10 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
 
     public void Die()
     {
+        if (smartAgent)
+        {
+            agent.speed = 0;
+        }
         alive = false;
 
         if (!riggedEnemy)
