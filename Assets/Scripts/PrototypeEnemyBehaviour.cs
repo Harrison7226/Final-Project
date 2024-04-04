@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class PrototypeEnemyBehaviour : MonoBehaviour
 {
+    public enum FSMStates
+    {
+        Patrol,
+        Attack
+    }
+
     public GameObject gun;
 
     public bool alive = true; // Still alive?
@@ -24,6 +30,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     private int wanderPointIndex = 0; // Index of current wander point.
     private NavMeshAgent agent;
     private Vector3 nextDestination; // Next place to wander to
+    private FSMStates currentState = FSMStates.Patrol;
 
     // Start is called before the first frame update
     void Start()
@@ -42,32 +49,76 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
         }
     }
 
+    // Called once every patrol physics update
+    void UpdatePatrol()
+    {
+        if (smartAgent)
+        {
+            agent.speed = 3.5f;
+            agent.stoppingDistance = 0;
+
+            FaceTarget(nextDestination);
+
+            if (Vector3.Distance(nextDestination, transform.position) < 1f)
+            {
+                wanderPointIndex++;
+                if (wanderPointIndex > wanderPoints.Length - 1)
+                {
+                    wanderPointIndex = 0;
+                }
+                nextDestination = wanderPoints[wanderPointIndex].position;
+
+                agent.SetDestination(nextDestination);
+            }
+        }
+
+
+    }
+    
+    void UpdateAttack()
+    {
+        if (smartAgent)
+        {
+            Debug.Log("Attacking!");
+            agent.speed = 6;
+            agent.stoppingDistance = 4;
+            nextDestination = targetTransform.position;
+
+            FaceTarget(nextDestination);
+
+            if (Vector3.Distance(nextDestination, transform.position) > 30f)
+            {
+                Debug.Log("I lost the player. Returning to patrol behaviour.");
+                currentState = FSMStates.Patrol;
+                nextDestination = wanderPoints[wanderPointIndex].position;
+            }
+
+            agent.SetDestination(nextDestination);
+        }
+    }
+
     void FixedUpdate()
     {
         if (alive)
         {
-            if (smartAgent)
+            switch (currentState)
             {
-                FaceTarget(nextDestination);
-
-                if (Vector3.Distance(nextDestination, transform.position) < 1f)
-                {
-                    wanderPointIndex++;
-                    if (wanderPointIndex > wanderPoints.Length - 1)
-                    {
-                        wanderPointIndex = 0;
-                    }
-                    nextDestination = wanderPoints[wanderPointIndex].position;
-
-                    agent.SetDestination(nextDestination);
-                }
+                case FSMStates.Patrol:
+                    UpdatePatrol();
+                    break;
+                case FSMStates.Attack:
+                    UpdateAttack();
+                    break;
             }
+            
 
             RaycastHit enemyView;
             if ((Vector3.Dot(targetTransform.position - transform.position, transform.forward) > 0 || alerted)
                 && Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out enemyView, Mathf.Infinity)
                 && enemyView.collider.CompareTag("Player"))
             {
+                currentState = FSMStates.Attack;
+                Debug.Log("Player spotted!");
 
                 // transform.LookAt(targetTransform); : replaced with code below
                
@@ -105,6 +156,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             {
                 if (gunview.collider.CompareTag("Player"))
                 {
+                    Debug.Log("Player is in my sights!");
                     if (canShoot)
                     {
                         canShoot = false;

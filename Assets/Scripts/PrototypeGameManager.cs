@@ -17,6 +17,8 @@ public class PrototypeGameManager : MonoBehaviour
     public AudioClip missionStartSFX;
     public AudioClip missionBriefSFX;
     public AudioClip missionWinSFX;
+
+    public GameObject deathScreen;
     
     private AudioSource music;
 
@@ -24,6 +26,7 @@ public class PrototypeGameManager : MonoBehaviour
     void Start()
     {
         music = GetComponent<AudioSource>();
+        deathScreen.SetActive(false);
 
         FreezePlayer();
 
@@ -65,6 +68,7 @@ public class PrototypeGameManager : MonoBehaviour
     {
         if (gameRunning)
         {
+            deathScreen.SetActive(true);
             FreezePlayer();
             gameRunning = false;
             screenMessage.SetText(yourMessage);
@@ -79,13 +83,18 @@ public class PrototypeGameManager : MonoBehaviour
             gameRunning = false;
             SayLine(missionWinSFX);
             screenMessage.SetText("<color=green>" + yourMessage + "</color>");
-            Invoke("ReloadGame", 4);
+            Invoke("NextLevel", 4);
         }
     }
 
     public void ReloadGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void FreezePlayer()

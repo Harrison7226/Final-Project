@@ -82,23 +82,31 @@ public class WarpPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (!isWarping)
+        // If colliding with win area...
+        if (collider.gameObject.CompareTag("WinArea"))
         {
-            // If entering point A of warp point, go to point B
-            if (collider.gameObject.transform.parent.GetChild(0).gameObject == collider.gameObject)
+            Debug.Log("You have walked through a win area.");
+        }
+        else // Otherwise, this is probably a warp area.
+        {
+            if (!isWarping)
             {
-                destinationPosition = collider.gameObject.transform.parent.GetChild(1).transform.position;
-                collider.gameObject.GetComponent<AudioSource>().Play();
-                isWarping = true;
-            }
-            // If entering point B of warp point, go to point A
-            else if (collider.gameObject.transform.parent.GetChild(1).gameObject == collider.gameObject)
-            {
-                destinationPosition = collider.gameObject.transform.parent.GetChild(0).transform.position;
-                collider.gameObject.GetComponent<AudioSource>().Play();
-                isWarping = true;
-            }
+                // If entering point A of warp point, go to point B
+                if (collider.gameObject.transform.parent.GetChild(0).gameObject == collider.gameObject)
+                {
+                    destinationPosition = collider.gameObject.transform.parent.GetChild(1).transform.position;
+                    collider.gameObject.GetComponent<AudioSource>().Play();
+                    isWarping = true;
+                }
+                // If entering point B of warp point, go to point A
+                else if (collider.gameObject.transform.parent.GetChild(1).gameObject == collider.gameObject)
+                {
+                    destinationPosition = collider.gameObject.transform.parent.GetChild(0).transform.position;
+                    collider.gameObject.GetComponent<AudioSource>().Play();
+                    isWarping = true;
+                }
 
+            }
         }
 
     }

@@ -232,6 +232,8 @@ MonoBehaviour:
   gunHeight: 2
   shootDelay: 1
   eyes: {fileID: 4377943640721548832}
+  smartAgent: 0
+  wanderPoints: []
 --- !u!1 &511232574820996384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1331,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f4957968cfd342c0a43497c5c2420a1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.479
+  m_Volume: 0.098
   m_Pitch: 1
   Loop: 0
   Mute: 0
