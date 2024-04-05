@@ -31028,6 +31028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SWAT Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 484741630149614724, guid: ffc5c38b031b6fd40ba6b187c904af9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5245688443340475467, guid: ffc5c38b031b6fd40ba6b187c904af9a, type: 3}
       propertyPath: smartAgent
       value: 1
@@ -42560,6 +42564,10 @@ PrefabInstance:
     - target: {fileID: 484741630149614724, guid: ffc5c38b031b6fd40ba6b187c904af9a, type: 3}
       propertyPath: m_Name
       value: SWAT Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 484741630149614724, guid: ffc5c38b031b6fd40ba6b187c904af9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5245688443340475467, guid: ffc5c38b031b6fd40ba6b187c904af9a, type: 3}
       propertyPath: smartAgent
