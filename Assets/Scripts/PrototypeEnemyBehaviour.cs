@@ -81,7 +81,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
         {
             Debug.Log("Attacking!");
             agent.speed = 6;
-            agent.stoppingDistance = 4;
+            agent.stoppingDistance = 60;
             nextDestination = targetTransform.position;
 
             FaceTarget(nextDestination);

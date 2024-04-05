@@ -22,6 +22,9 @@ public class PrototypeGameManager : MonoBehaviour
     
     private AudioSource music;
 
+    private float initWalkSpeed;
+    private float initRunSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,13 +102,16 @@ public class PrototypeGameManager : MonoBehaviour
 
     public void FreezePlayer()
     {
+        initWalkSpeed = FindObjectOfType<FPSController>().walkSpeed;
+        initRunSpeed = FindObjectOfType<FPSController>().runSpeed;
         FindObjectOfType<FPSController>().walkSpeed = 0;
         FindObjectOfType<FPSController>().runSpeed = 0;
     }
 
     public void UnfreezePlayer()
     {
-        FindObjectOfType<FPSController>().walkSpeed = 12;
-        FindObjectOfType<FPSController>().runSpeed = 24;
+
+        FindObjectOfType<FPSController>().walkSpeed = initWalkSpeed;
+        FindObjectOfType<FPSController>().runSpeed = initRunSpeed;
     }
 }
