@@ -31,6 +31,7 @@ public class PrototypeGameManager : MonoBehaviour
         music = GetComponent<AudioSource>();
         deathScreen.SetActive(false);
 
+        briefed = false;
         FreezePlayer();
 
         if (!briefed)

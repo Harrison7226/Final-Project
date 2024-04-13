@@ -27,6 +27,8 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        lookSpeed = SettingsManager.sensitivity;
     }
  
     void Update()
@@ -65,7 +67,7 @@ public class FPSController : MonoBehaviour
         #region Handles Rotation
         characterController.Move(moveDirection * Time.deltaTime);
  
-        if (canMove)
+        if (canMove && !PauseMenuBehavior.isGamePaused)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);

@@ -42,22 +42,32 @@ public class ShootMechanic : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && PrototypeGameManager.gameRunning && !reloading && gun.activeSelf)
+        if (!PauseMenuBehavior.isGamePaused)
         {
-            if (bullets > 0)
+            reticleImage.enabled = true;
+
+            if (Input.GetMouseButtonDown(0) && PrototypeGameManager.gameRunning && !reloading && gun.activeSelf)
             {
-                Shoot();
+                if (bullets > 0)
+                {
+                    Shoot();
+                }
+                else if (bullets == 0 && magazine == 0)
+                {
+                    emptyAudioSource.Play();
+                }
             }
-            else if (bullets == 0 && magazine == 0)
+
+            if (Input.GetKeyDown(KeyCode.R) && bullets < maxBullets && magazine > 0)
             {
-                emptyAudioSource.Play();
+                Reload();
             }
+        }
+        else
+        {
+            reticleImage.enabled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && bullets < maxBullets && magazine > 0)
-        {
-            Reload();
-        }
     }
 
     void FixedUpdate()
