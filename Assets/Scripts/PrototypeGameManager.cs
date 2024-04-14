@@ -11,7 +11,7 @@ public class PrototypeGameManager : MonoBehaviour
     public static bool gameRunning = false; // Game doesn't start running until message is done
     public static bool briefed = false;
 
-    public int currentLevel = 0;
+    public static int currentLevel = 1; // I forget why this is here but I will use it and hope things don't break
 
     public AudioSource voiceLines;
     public AudioClip missionStartSFX;
@@ -31,7 +31,8 @@ public class PrototypeGameManager : MonoBehaviour
         music = GetComponent<AudioSource>();
         deathScreen.SetActive(false);
 
-        briefed = false;
+        gameRunning = false;
+        // briefed = false;
         FreezePlayer();
 
         if (!briefed)
@@ -39,6 +40,7 @@ public class PrototypeGameManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(missionBriefSFX, Camera.main.transform.position);
             screenMessage.SetText("Flanagan: Alright Valentina, you know the mission. Get to the vault, we got your escape route covered. Good luck, friend.");
             Invoke("ClearMessage", 5);
+            // Invoke("ClearMessage", 0.1f);
         }
         else
         {
@@ -98,6 +100,7 @@ public class PrototypeGameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        currentLevel++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

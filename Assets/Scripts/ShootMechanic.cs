@@ -97,6 +97,13 @@ public class ShootMechanic : MonoBehaviour
             else if (gunshot.collider.CompareTag("Civilian"))
             {
                 FindObjectOfType<PrototypeGameManager>().GameOverMessage("You shot a civilian! Game over.");
+                
+                GameObject.FindGameObjectWithTag("Player").SetActive(false);
+                Camera.main.transform.GetChild(0).gameObject.SetActive(false);
+                Camera.main.transform.parent = null;
+
+                GameObject.FindObjectOfType<ShootMechanic>().enabled = false;
+                GameObject.FindObjectOfType<FPSController>().enabled = false;
             }
         }
 

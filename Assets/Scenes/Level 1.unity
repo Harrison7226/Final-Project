@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23904,6 +23904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1158193079}
+  gameCanvas: {fileID: 6449336767393196050}
 --- !u!1001 &1168855451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25079,7 +25080,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenMessage: {fileID: 1587191259}
   playerAlive: 1
-  currentLevel: 0
   voiceLines: {fileID: 332919764}
   missionStartSFX: {fileID: 8300000, guid: 0fe1e6fc7cc0a4724b3f402d80edad4b, type: 3}
   missionBriefSFX: {fileID: 8300000, guid: 42dfe8be13c3141358372422a1e3f184, type: 3}
@@ -53554,6 +53554,11 @@ PrefabInstance:
 --- !u!224 &6449336767393196049 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6962058803542671731, guid: 7f904491af562ca4db738024e6074381, type: 3}
+  m_PrefabInstance: {fileID: 6449336767393196048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6449336767393196050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2155365738635775454, guid: 7f904491af562ca4db738024e6074381, type: 3}
   m_PrefabInstance: {fileID: 6449336767393196048}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6579594580839139916
