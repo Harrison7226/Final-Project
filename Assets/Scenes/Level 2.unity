@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6207,7 +6207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 419792, guid: 68b4cd11f69acca4e9a3c68b161c68b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.73
+      value: -38.02
       objectReference: {fileID: 0}
     - target: {fileID: 419792, guid: 68b4cd11f69acca4e9a3c68b161c68b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6215,7 +6215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 419792, guid: 68b4cd11f69acca4e9a3c68b161c68b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 107.19
+      value: 106.996
       objectReference: {fileID: 0}
     - target: {fileID: 419792, guid: 68b4cd11f69acca4e9a3c68b161c68b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29292,6 +29292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 57555570427583721, guid: f663df548972da8438c8cba504d07053, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 181029295419401583, guid: f663df548972da8438c8cba504d07053, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9990003
@@ -43184,7 +43188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenMessage: {fileID: 809431545}
   playerAlive: 1
-  currentLevel: 0
   voiceLines: {fileID: 1488968499}
   missionStartSFX: {fileID: 8300000, guid: 0fe1e6fc7cc0a4724b3f402d80edad4b, type: 3}
   missionBriefSFX: {fileID: 8300000, guid: 42dfe8be13c3141358372422a1e3f184, type: 3}

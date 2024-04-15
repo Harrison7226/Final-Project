@@ -28,6 +28,14 @@ public class ShootMechanic : MonoBehaviour
     public TextMeshProUGUI bulletsText;
     public TextMeshProUGUI magazineText;
 
+    public Transform defaultPosition;
+    public Transform adsPosition;
+    public Transform weaponPosition;
+    
+    public Camera playerCamera;
+
+    public float aimSpeed = 5.0f; // speed of entering and exiting ADS
+
     Color originalReticleColor;
 
     void Start()
@@ -58,6 +66,18 @@ public class ShootMechanic : MonoBehaviour
                 }
             }
 
+            // aiming down sights
+            if (Input.GetButton("Fire2"))
+            {
+                weaponPosition.localPosition = Vector3.Lerp(weaponPosition.localPosition, adsPosition.localPosition, aimSpeed * Time.deltaTime);
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, 45, aimSpeed * Time.deltaTime);
+            }
+            else
+            {
+                weaponPosition.localPosition = Vector3.Lerp(weaponPosition.localPosition, defaultPosition.localPosition, aimSpeed * Time.deltaTime);
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, 60, aimSpeed * Time.deltaTime);
+            }
+
             if (Input.GetKeyDown(KeyCode.R) && bullets < maxBullets && magazine > 0)
             {
                 Reload();
@@ -67,7 +87,6 @@ public class ShootMechanic : MonoBehaviour
         {
             reticleImage.enabled = false;
         }
-
     }
 
     void FixedUpdate()
@@ -97,7 +116,7 @@ public class ShootMechanic : MonoBehaviour
             else if (gunshot.collider.CompareTag("Civilian"))
             {
                 FindObjectOfType<PrototypeGameManager>().GameOverMessage("You shot a civilian! Game over.");
-                
+
                 GameObject.FindGameObjectWithTag("Player").SetActive(false);
                 Camera.main.transform.GetChild(0).gameObject.SetActive(false);
                 Camera.main.transform.parent = null;
@@ -113,7 +132,7 @@ public class ShootMechanic : MonoBehaviour
         }
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies) 
+        foreach (GameObject enemy in enemies)
         {
             if (Vector3.Distance(enemy.transform.position, transform.position) < alertRange)
             {
