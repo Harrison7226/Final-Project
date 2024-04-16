@@ -7,8 +7,8 @@ public class Keypad : MonoBehaviour, IInteractable
 {
     public GameObject player;
     public GameObject keypadUI;
-    public GameObject hud;
-    public GameObject inv;
+    public GameObject mainCanvas;
+    public GameObject gun;
 
     public GameObject vaultDoor;
     public Animator animator;
@@ -68,8 +68,8 @@ public class Keypad : MonoBehaviour, IInteractable
     public void Exit()
     {
         keypadUI.SetActive(false);
-        hud.SetActive(true);
-        inv.SetActive(true);
+        mainCanvas.SetActive(true);
+        gun.SetActive(true);
         player.GetComponent<FPSController>().canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -78,8 +78,8 @@ public class Keypad : MonoBehaviour, IInteractable
     public void Interact()
     {
         keypadUI.SetActive(true);
-        hud.SetActive(false);
-        inv.SetActive(false);
+        mainCanvas.SetActive(false);
+        gun.SetActive(false);
         player.GetComponent<FPSController>().canMove = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
