@@ -8,6 +8,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     public enum FSMStates
     {
         Patrol,
+        Chase,
         Attack
     }
 
@@ -56,6 +57,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     {
         if (smartAgent)
         {
+            GetComponent<Animator>().SetInteger("AnimState", 0);
             agent.speed = 3.5f;
             agent.stoppingDistance = 0;
 
@@ -76,12 +78,13 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
 
 
     }
-    
-    void UpdateAttack()
+
+    void UpdateChase()
     {
         if (smartAgent)
         {
-          //  Debug.Log("Attacking!");
+            Debug.Log("Chasing!");
+            GetComponent<Animator>().SetInteger("AnimState", 3);
             agent.speed = 6;
             agent.stoppingDistance = 10;
             nextDestination = targetTransform.position;
@@ -93,6 +96,35 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                 Debug.Log("I lost the player. Returning to patrol behaviour.");
                 currentState = FSMStates.Patrol;
                 nextDestination = wanderPoints[wanderPointIndex].position;
+            } else if (Vector3.Distance(nextDestination, transform.position) <= 10)
+            {
+                currentState = FSMStates.Attack;
+            }
+
+            agent.SetDestination(nextDestination);
+        }
+    }
+
+    void UpdateAttack()
+    {
+        if (smartAgent)
+        {
+            Debug.Log("Attacking!");
+            GetComponent<Animator>().SetInteger("AnimState", 1);
+            agent.speed = 0;
+            agent.stoppingDistance = 10;
+            nextDestination = targetTransform.position;
+
+            FaceTarget(nextDestination);
+
+            if (Vector3.Distance(nextDestination, transform.position) > 30f)
+            {
+                Debug.Log("I lost the player. Returning to patrol behaviour.");
+                currentState = FSMStates.Patrol;
+                nextDestination = wanderPoints[wanderPointIndex].position;
+            } else if (Vector3.Distance(nextDestination, transform.position) >= 15f)
+            {
+                currentState = FSMStates.Chase;
             }
 
             agent.SetDestination(nextDestination);
@@ -111,6 +143,9 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                 case FSMStates.Attack:
                     UpdateAttack();
                     break;
+                case FSMStates.Chase:
+                    UpdateChase();
+                    break;
             }
             
 
@@ -119,40 +154,30 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                 && Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out enemyView, Mathf.Infinity)
                 && enemyView.collider.CompareTag("Player"))
             {
-                currentState = FSMStates.Attack;
-            //    Debug.Log("Player spotted!");
-
-
-                // transform.LookAt(targetTransform); : replaced with code below
-
-                // This is some code I used in another project that prevents the enemies from
-                // looking upwards when they face the player
+                Debug.Log("Player spotted!");
 
                 FaceTarget(enemyView.collider.gameObject.transform.position);
-               // Vector3 targetPosition = enemyView.collider.gameObject.transform.position;
-            //    targetPosition.y = transform.position.y;
-              //  if (Mathf.Abs(Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down)) < 10)
-             //   {
-            //        transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
-            //    } 
-           //     else
-           //     {
-           //         transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.FromToRotation(transform.forward, (targetPosition - transform.position)), Time.deltaTime * 5);
-            //    }
+
+                if (currentState == FSMStates.Patrol)
+                {
+                    currentState = FSMStates.Chase;
+                }
 
 
-
-
-                if (GetComponent<Animator>() != null)
+                if (!smartAgent)
                 {
                     GetComponent<Animator>().SetInteger("AnimState", 1);
                 }
 
             } else
             {
-                if (GetComponent<Animator>() != null)
+                if (!smartAgent)
                 {
                     GetComponent<Animator>().SetInteger("AnimState", 0);
+                } 
+                else if (FSMStates.Attack == currentState)
+                {
+                    currentState = FSMStates.Chase;
                 }
 
             }
@@ -162,12 +187,10 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             {
                 if (gunview.collider.CompareTag("Player"))
                 {
-                   // Debug.Log("Player is in my sights!");
-                   // Debug.Log("bang1");
+                    Debug.Log("Player is in my sights!");
                     if (canShoot)
                     {
                         canShoot = false;
-                       // Invoke("Shoot", shootDelay);
                         shootTimer = 0;
                     }
                     else
@@ -199,14 +222,8 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
 
     private void FaceTarget(Vector3 destination)
     {
-        //Vector3 lookPos = destination - transform.position;
-        // lookPos.y = 0;
-        // Quaternion rotation = Quaternion.LookRotation(lookPos);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.05f);  
-        Vector3 targetPosition = destination;// enemyView.collider.gameObject.transform.position;
+        Vector3 targetPosition = destination;
         targetPosition.y = transform.position.y;
-      //  Debug.DrawRay(transform.position + new Vector3(0, gunHeight, 0), (targetPosition - transform.position).normalized, Color.green);
-       // Debug.DrawRay(transform.position + new Vector3(0, gunHeight, 0), transform.forward, Color.blue);
         if (Mathf.Abs(Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down)) < 10 || smartAgent)
         {
             transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
@@ -225,16 +242,13 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             gunAudio.Play();
             canShoot = true;
 
-            Debug.Log("BANG");
             // Actually calculate the gunshot
             RaycastHit gunshot;
             if (Physics.Raycast(transform.position + new Vector3(0, gunHeight, 0), transform.forward, out gunshot, Mathf.Infinity))
             {
-                Debug.Log("bang2");
                 Debug.Log(gunshot.collider.name);
                 if (gunshot.collider.CompareTag("Player") || gunshot.collider.CompareTag("Gun"))
                 {
-                    Debug.Log("bang3");
                     FindObjectOfType<PlayerHealth>().TakeDamage(25);
                 }
             }
@@ -271,7 +285,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     public void OnAlert()
     {
         RaycastHit hit;
-        if (Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out hit, Mathf.Infinity)
+        if (Physics.Raycast(eyes.transform.position, targetTransform.position - eyes.transform.position, out hit, Mathf.Infinity, ~6)
              && hit.collider.CompareTag("Player"))
         {
             alerted = true;
