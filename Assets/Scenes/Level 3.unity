@@ -15716,7 +15716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b60d6dad8824e1aba36a5c11af6f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenMessage: {fileID: 0}
+  screenMessage: {fileID: 1761245160}
   playerAlive: 1
   voiceLines: {fileID: 25006891}
   missionStartSFX: {fileID: 8300000, guid: 0fe1e6fc7cc0a4724b3f402d80edad4b, type: 3}
@@ -36320,6 +36320,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4571571560676309251, guid: ccace949674de5849ab5fb491ef70db0, type: 3}
   m_PrefabInstance: {fileID: 1759148614}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1761245160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8155562283521261215, guid: 7f904491af562ca4db738024e6074381, type: 3}
+  m_PrefabInstance: {fileID: 322323343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1766943454
 PrefabInstance:
   m_ObjectHideFlags: 0
