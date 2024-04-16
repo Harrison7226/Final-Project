@@ -32,6 +32,8 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     private Vector3 nextDestination; // Next place to wander to
     private FSMStates currentState = FSMStates.Patrol;
 
+    private float shootTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,9 +81,9 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
     {
         if (smartAgent)
         {
-            Debug.Log("Attacking!");
+          //  Debug.Log("Attacking!");
             agent.speed = 6;
-            agent.stoppingDistance = 60;
+            agent.stoppingDistance = 10;
             nextDestination = targetTransform.position;
 
             FaceTarget(nextDestination);
@@ -118,22 +120,26 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
                 && enemyView.collider.CompareTag("Player"))
             {
                 currentState = FSMStates.Attack;
-                Debug.Log("Player spotted!");
+            //    Debug.Log("Player spotted!");
+
 
                 // transform.LookAt(targetTransform); : replaced with code below
-               
+
                 // This is some code I used in another project that prevents the enemies from
                 // looking upwards when they face the player
-                Vector3 targetPosition = enemyView.collider.gameObject.transform.position;
-                targetPosition.y = transform.position.y;
-                if (Mathf.Abs(Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down)) < 10)
-                {
-                    transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
-                } 
-                else
-                {
-                    transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.FromToRotation(transform.forward, (targetPosition - transform.position)), Time.deltaTime * 5);
-                }
+
+                FaceTarget(enemyView.collider.gameObject.transform.position);
+               // Vector3 targetPosition = enemyView.collider.gameObject.transform.position;
+            //    targetPosition.y = transform.position.y;
+              //  if (Mathf.Abs(Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down)) < 10)
+             //   {
+            //        transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
+            //    } 
+           //     else
+           //     {
+           //         transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.FromToRotation(transform.forward, (targetPosition - transform.position)), Time.deltaTime * 5);
+            //    }
+
 
 
 
@@ -156,23 +162,59 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             {
                 if (gunview.collider.CompareTag("Player"))
                 {
-                    Debug.Log("Player is in my sights!");
+                   // Debug.Log("Player is in my sights!");
+                   // Debug.Log("bang1");
                     if (canShoot)
                     {
                         canShoot = false;
-                        Invoke("Shoot", shootDelay);
+                       // Invoke("Shoot", shootDelay);
+                        shootTimer = 0;
                     }
+                    else
+                    {
+                        if (shootTimer >= shootDelay)
+                        {
+                            shootTimer = 0;
+                            canShoot = true;
+                            Shoot();
+                        } else
+                        {
+                            shootTimer += Time.deltaTime;
+                        }
+                    }
+                } else
+                {
+                    shootTimer = 0;
+                    canShoot = true;
                 }
+            } else
+            {
+                shootTimer = 0;
+                canShoot = true;
             }
+
+            Debug.DrawRay(transform.position + new Vector3(0, gunHeight, 0), transform.forward * 20, Color.blue);
         }
     }
 
     private void FaceTarget(Vector3 destination)
     {
-        Vector3 lookPos = destination - transform.position;
-        lookPos.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.05f);  
+        //Vector3 lookPos = destination - transform.position;
+        // lookPos.y = 0;
+        // Quaternion rotation = Quaternion.LookRotation(lookPos);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.05f);  
+        Vector3 targetPosition = destination;// enemyView.collider.gameObject.transform.position;
+        targetPosition.y = transform.position.y;
+      //  Debug.DrawRay(transform.position + new Vector3(0, gunHeight, 0), (targetPosition - transform.position).normalized, Color.green);
+       // Debug.DrawRay(transform.position + new Vector3(0, gunHeight, 0), transform.forward, Color.blue);
+        if (Mathf.Abs(Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down)) < 10 || smartAgent)
+        {
+            transform.Rotate(0, Vector3.SignedAngle((targetPosition - transform.position).normalized, transform.forward, Vector3.down), 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.FromToRotation(transform.forward, (targetPosition - transform.position).normalized), Time.deltaTime * 5);
+        }
     }
 
     void Shoot()
@@ -183,12 +225,16 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
             gunAudio.Play();
             canShoot = true;
 
+            Debug.Log("BANG");
             // Actually calculate the gunshot
             RaycastHit gunshot;
             if (Physics.Raycast(transform.position + new Vector3(0, gunHeight, 0), transform.forward, out gunshot, Mathf.Infinity))
             {
-                if (gunshot.collider.CompareTag("Player"))
+                Debug.Log("bang2");
+                Debug.Log(gunshot.collider.name);
+                if (gunshot.collider.CompareTag("Player") || gunshot.collider.CompareTag("Gun"))
                 {
+                    Debug.Log("bang3");
                     FindObjectOfType<PlayerHealth>().TakeDamage(25);
                 }
             }
@@ -213,6 +259,7 @@ public class PrototypeEnemyBehaviour : MonoBehaviour
         {
             if (GetComponent<Animator>() != null)
             {
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 GetComponent<Animator>().SetInteger("AnimState", 2);
             }
         }

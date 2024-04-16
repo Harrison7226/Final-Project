@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Civilian
   - WinArea
+  - Gun
   layers:
   - Default
   - TransparentFX
