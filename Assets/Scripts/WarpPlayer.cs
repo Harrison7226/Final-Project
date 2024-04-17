@@ -87,7 +87,7 @@ public class WarpPlayer : MonoBehaviour
         {
             Debug.Log("You have walked through a win area.");
         }
-        else // Otherwise, this is probably a warp area.
+        else if (collider.gameObject.CompareTag("WarpPoint")) // Otherwise, this is probably a warp area.
         {
             if (!isWarping)
             {

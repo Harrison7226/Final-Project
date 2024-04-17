@@ -7,6 +7,8 @@ public class WinScreen : MonoBehaviour
 {
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Invoke("MainMenu", 5);
     }
 

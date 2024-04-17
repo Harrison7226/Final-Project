@@ -25381,6 +25381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenMessage: {fileID: 1587191259}
   playerAlive: 1
+  briefMessage: Alright Valentina, you know the mission. Get to the vault, we got
+    your escape route covered. Good luck, friend.
+  briefDelay: 5
   voiceLines: {fileID: 332919764}
   missionStartSFX: {fileID: 8300000, guid: 0fe1e6fc7cc0a4724b3f402d80edad4b, type: 3}
   missionBriefSFX: {fileID: 8300000, guid: 42dfe8be13c3141358372422a1e3f184, type: 3}
@@ -30790,6 +30793,10 @@ PrefabInstance:
       propertyPath: m_SharedVertices.Array.data[3].m_Vertices.Array.data[2]
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4481313621110415189, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -30817,6 +30824,10 @@ PrefabInstance:
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Mesh
@@ -50106,6 +50117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1632bf26f815465eba297bc2b46f90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winMessage: Spectacular work, Valentina. We'll get you out of there shortly.
+  winDelay: 3.5
 --- !u!65 &1995958722
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54396,6 +54409,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 94722115}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4714144139816413139, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Size.z
       value: 0.72
@@ -54410,6 +54427,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Name
+      value: WarpPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
       value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}

@@ -8,6 +8,8 @@ public class PrototypeGameManager : MonoBehaviour
 {
     public TextMeshProUGUI screenMessage;
     public bool playerAlive = true;
+    public string briefMessage = "";
+    public float briefDelay = 5;
     public static bool gameRunning = false; // Game doesn't start running until message is done
     public static bool briefed = false;
 
@@ -38,8 +40,10 @@ public class PrototypeGameManager : MonoBehaviour
         if (!briefed)
         {
             AudioSource.PlayClipAtPoint(missionBriefSFX, Camera.main.transform.position);
-            screenMessage.SetText("Flanagan: Alright Valentina, you know the mission. Get to the vault, we got your escape route covered. Good luck, friend.");
-            Invoke("ClearMessage", 5);
+            screenMessage.SetText("Flanagan: " + briefMessage);
+
+            // Alright Valentina, you know the mission. Get to the vault, we got your escape route covered. Good luck, friend.
+            Invoke("ClearMessage", briefDelay);
             // Invoke("ClearMessage", 0.1f);
         }
         else
@@ -82,14 +86,14 @@ public class PrototypeGameManager : MonoBehaviour
         }
     }
 
-    public void WinMessage(string yourMessage)
+    public void WinMessage(string yourMessage, float delay)
     {
         if (gameRunning)
         {
             gameRunning = false;
             SayLine(missionWinSFX);
             screenMessage.SetText("<color=green>" + yourMessage + "</color>");
-            Invoke("NextLevel", 4);
+            Invoke("NextLevel", delay);
         }
     }
 
@@ -101,6 +105,7 @@ public class PrototypeGameManager : MonoBehaviour
     public void NextLevel()
     {
         currentLevel++;
+        briefed = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

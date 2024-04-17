@@ -15934,6 +15934,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Name
       value: WarpPoint (4)
@@ -15941,6 +15945,10 @@ PrefabInstance:
     - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Mesh
@@ -32850,6 +32858,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Name
       value: WarpPoint (1)
@@ -32857,6 +32869,10 @@ PrefabInstance:
     - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Mesh
@@ -38890,6 +38906,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Name
       value: WarpPoint (2)
@@ -38897,6 +38917,10 @@ PrefabInstance:
     - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Mesh
@@ -40084,10 +40108,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenMessage: {fileID: 809431545}
   playerAlive: 1
+  briefMessage: "The jewellry store security\u2019s tough, because some of the guards
+    might chase you down. Remember to use your warp device as best you can. Stay
+    safe out there."
+  briefDelay: 6.5
   voiceLines: {fileID: 1488968499}
   missionStartSFX: {fileID: 8300000, guid: 0fe1e6fc7cc0a4724b3f402d80edad4b, type: 3}
-  missionBriefSFX: {fileID: 8300000, guid: 42dfe8be13c3141358372422a1e3f184, type: 3}
-  missionWinSFX: {fileID: 8300000, guid: 5a97ff1d9ffae41cf8d42e314c116102, type: 3}
+  missionBriefSFX: {fileID: 8300000, guid: 4ef8c322fca69450989ebabf04fa275e, type: 3}
+  missionWinSFX: {fileID: 8300000, guid: 9bd88deb228554ce1b5234b9aa87f0f6, type: 3}
   deathScreen: {fileID: 1234688541}
 --- !u!4 &1370851915
 Transform:
@@ -42450,6 +42478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1632bf26f815465eba297bc2b46f90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winMessage: "Hey, that was awesome! We\u2019re on our way to get you out."
+  winDelay: 4
 --- !u!33 &1472943235
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -55273,6 +55303,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Name
       value: WarpPoint (3)
@@ -55280,6 +55314,10 @@ PrefabInstance:
     - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Mesh
@@ -58606,6 +58644,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4248649479073989101, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
+      objectReference: {fileID: 0}
     - target: {fileID: 4759348436098113407, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Name
       value: WarpPoint
@@ -58613,6 +58655,10 @@ PrefabInstance:
     - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289866102008796867, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
+      propertyPath: m_TagString
+      value: WarpPoint
       objectReference: {fileID: 0}
     - target: {fileID: 7298207968227161376, guid: 3754a8143544d2b46902cce25cffccc2, type: 3}
       propertyPath: m_Mesh
