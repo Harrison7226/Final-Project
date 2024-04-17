@@ -204,7 +204,7 @@ public class ShootMechanic : MonoBehaviour
         }
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         bulletsText.SetText(bullets.ToString() + "/");
         magazineText.SetText(magazine.ToString());

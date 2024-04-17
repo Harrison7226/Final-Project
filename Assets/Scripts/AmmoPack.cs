@@ -15,7 +15,11 @@ public class AmmoPack : MonoBehaviour
         if (other.CompareTag("Player"))
         {            
             AudioSource.PlayClipAtPoint(reloadSound, transform.position);
-            other.GetComponent<ShootMechanic>().magazine += (int)reloadAmount;
+            ShootMechanic sm = GameObject.FindObjectOfType<ShootMechanic>();
+            sm.magazine += (int)reloadAmount;
+            sm.UpdateUI();
+
+            // other.GetComponent<ShootMechanic>().magazine += (int)reloadAmount;
             Destroy(gameObject);
         }
     }
