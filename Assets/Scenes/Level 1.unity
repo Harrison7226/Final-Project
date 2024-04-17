@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21615,6 +21615,10 @@ PrefabInstance:
     - target: {fileID: 165542, guid: b18f8b4669bd235479d8699c07b1020d, type: 3}
       propertyPath: m_Name
       value: Standing Woman
+      objectReference: {fileID: 0}
+    - target: {fileID: 165542, guid: b18f8b4669bd235479d8699c07b1020d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 165542, guid: b18f8b4669bd235479d8699c07b1020d, type: 3}
       propertyPath: m_TagString
