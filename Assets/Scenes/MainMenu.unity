@@ -3593,9 +3593,12 @@ MonoBehaviour:
     Right
     Click -    Aim
 
+    Tab -               Warp
+
     R -                  Reload
 
-    E -                  Interact
+    E
+    -                  Interact
 
 
 
